@@ -2,9 +2,134 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-    <title>FAQ - Amrita Medicity</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/faq.css">
+  <title>FAQ - Amrita Medicity</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/faq.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(120deg, #e3f0ff 0%, #b2f7ef 100%);
+      min-height: 100vh;
+    }
+    .banner {
+      min-height: 100vh;
+      width: 100%;
+      background: linear-gradient(rgba(0,0,0,0.08), rgba(0,0,0,0.04)), url("images/aboutbg.jpg") center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .navbar {
+      width: 90%;
+      margin: 0 auto;
+      padding: 18px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(219, 232, 245, 0.92);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+      border-radius: 0 0 18px 18px;
+    }
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      color: #034058;
+      letter-spacing: 1px;
+    }
+    .logo img {
+      height: 36px;
+      margin-right: 10px;
+      border-radius: 8px;
+    }
+    .navbar ul {
+      display: flex;
+      list-style: none;
+      align-items: center;
+      gap: 30px;
+      margin: 0;
+      padding: 0;
+    }
+    .navbar ul li a {
+      text-decoration: none;
+      color: #061359;
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 16px;
+      padding: 8px 16px;
+      border-radius: 6px;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    }
+    .navbar ul li a:hover,
+    .navbar ul li a:focus {
+      color: #fff;
+      background: linear-gradient(90deg, #009688 0%, #21a1f3 100%);
+      box-shadow: 0 2px 12px rgba(33,150,243,0.10);
+    }
+    .content {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      margin-top: 40px;
+    }
+    .faq-container {
+      width: 100%;
+      max-width: 700px;
+      background: rgba(255,255,255,0.97);
+      border-radius: 18px;
+      padding: 40px 32px 32px 32px;
+      box-shadow: 0 8px 32px rgba(33,150,243,0.10), 0 1.5px 8px rgba(0,0,0,0.07);
+    }
+    .heading h1 {
+      text-align: center;
+      color: #034058;
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      margin-bottom: 28px;
+    }
+    .faq-item {
+      margin-bottom: 28px;
+      background: #f7fafc;
+      border-radius: 10px;
+      padding: 18px 18px 10px 18px;
+      box-shadow: 0 2px 12px rgba(33,150,243,0.06);
+    }
+    .faq-item h3 {
+      color: #009688;
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+    .faq-item p {
+      color: #1e293b;
+      font-size: 1.05rem;
+      margin: 0;
+      line-height: 1.7;
+    }
+    .faq-item a {
+      color: #009688;
+      text-decoration: underline;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    .faq-item a:hover {
+      color: #21a1f3;
+    }
+    @media (max-width: 800px) {
+      .faq-container { padding: 18px 4px 12px 4px; border-radius: 10px; }
+      .heading h1 { font-size: 1.5rem; }
+    }
+    @media (max-width: 500px) {
+      .faq-container { padding: 8px 2px 6px 2px; border-radius: 6px; }
+      .heading h1 { font-size: 1.1rem; }
+      .logo { font-size: 16px; }
+      .logo img { height: 18px; }
+    }
+  </style>
 </head>
 <body>
     <div class="banner">
@@ -15,7 +140,7 @@
                     <span style="color: #034058 ">Amrita</span><br>
                     <span style="color: teal ">Medicity</span>
                   </h2>
-                          </div>              
+            </div>              
             <ul>
                 <li><a href="index.html">HOME</a></li>
                 <li><a href="register.html">LOGIN</a></li>
@@ -26,31 +151,40 @@
 
         <div class="content">
             <div class="faq-container">
-                <div class="heading"> <h1 >Frequently Asked Questions</h1></div>
+                <div class="heading"> <h1>Frequently Asked Questions</h1></div>
 
                 <div class="faq-item">                    
                     <h3>1. How can I book an appointment?</h3><br>
-                    <p>You can book an appointment by clicking the <a href="appointments.html">Book Appointment</a> button on our homepage.</p>
+                    <p>You can book an appointment by clicking the <a href="appointments.html">Book Appointment</a> button on our homepage. After submitting your request, our team will reply and contact you soon to confirm your appointment.</p>
                 </div>
 
                 <div class="faq-item">
                     <h3>2. What are your hospital visiting hours?</h3><br>
-                    <p>Our hospital is open from 8 AM to 8 PM, Monday to Saturday. Emergency services are available 24/7.</p>
+                    <p>Our hospital is open from 8 AM to 8 PM, Monday to Saturday. Emergency services are available 24/7. For special visiting arrangements, please contact our helpdesk and we will get back to you as soon as possible.</p>
                 </div>
 
                 <div class="faq-item">
                     <h3>3. Do you accept health insurance?</h3><br>
-                    <p>Yes, we accept major health insurance providers. Please check with our front desk for specific coverage details.</p>
+                    <p>Yes, we accept major health insurance providers. Please check with our front desk for specific coverage details. If you have any queries, submit your details and our insurance team will reply and assist you soon.</p>
                 </div>
 
                 <div class="faq-item">
                     <h3>4. Where can I find specialist doctors?</h3><br>
-                    <p>Visit our <a href="doctors.html">Meet Our Experts</a> page to view specialist profiles and their availability.</p>
+                    <p>Visit our <a href="doctors.html">Meet Our Experts</a> page to view specialist profiles and their availability. If you need help choosing a specialist, contact us and we will reply with recommendations.</p>
                 </div>
 
                 <div class="faq-item">
                     <h3>5. How can I contact customer support?</h3><br>
-                    <p>You can reach us through our <a href="contact.html">Contact Us</a> page or call our helpline at +91 9876543210.</p>
+                    <p>You can reach us through our <a href="contact.html">Contact Us</a> page or call our helpline at +91 9876543210. We will reply and contact you soon to address your concerns.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>6. I have a question not listed here. What should I do?</h3><br>
+                    <p>Please use our <a href="contact.html">Contact Us</a> form to submit your query. Our team will reply and get back to you as soon as possible.</p>
+                </div>
+
+                <div class="faq-item" style="text-align:center; margin-top:30px;">
+                  <strong>Thank you for reaching out to Amrita Medicity. We value your queries and will reply and contact you soon!</strong>
                 </div>
             </div>
         </div>
