@@ -10,7 +10,18 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
     "express": "^5.1.0",
-    "jsonwebtoken": "^9.0.2"
-  }
+    "jsonwebtoken": "^9.0.2",
+    "sqlite3": "^5.1.7"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Adwaith0/new-health.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Adwaith0/new-health/issues"
+  },
+  "homepage": "https://github.com/Adwaith0/new-health#readme"
 }

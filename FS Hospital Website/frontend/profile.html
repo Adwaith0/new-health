@@ -3,29 +3,261 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Patient Profile</title>
+  <title>Patient Medical ID Card</title>
   <link rel="stylesheet" href="css/profile.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/patientdashboard.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <!-- QRCode.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+  <style>
+    body {
+      background: #e3f2fd;
+      font-family: 'Roboto', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .profile-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 40px;
+      margin-bottom: 40px;
+    }
+    .medical-id-card {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 4px 24px rgba(33,150,243,0.13);
+      border: 2px solid #1976d2;
+      width: 370px;
+      max-width: 95vw;
+      padding: 28px 24px 18px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+    .medical-id-header {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 18px;
+      border-bottom: 1.5px solid #e3f2fd;
+      padding-bottom: 10px;
+    }
+    .medical-id-logo {
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      margin-right: 14px;
+      border: 2px solid #1976d2;
+      background: #fff;
+      object-fit: cover;
+    }
+    .medical-id-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #1976d2;
+      letter-spacing: 1px;
+    }
+    .avatar {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      border: 3px solid #1976d2;
+      object-fit: cover;
+      margin-bottom: 10px;
+      margin-top: 10px;
+      background: #f5f5f5;
+    }
+    .profile-info {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    .profile-info h2 {
+      font-size: 1.2rem;
+      color: #034058;
+      margin: 0 0 6px 0;
+      font-weight: 700;
+      text-align: center;
+    }
+    .profile-info-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 1rem;
+      color: #222;
+    }
+    .profile-info-table td {
+      padding: 4px 0;
+      vertical-align: top;
+    }
+    .profile-info-table td:first-child {
+      font-weight: 600;
+      color: #1976d2;
+      width: 110px;
+    }
+    .qr-section {
+      margin: 18px 0 0 0;
+      text-align: center;
+      width: 100%;
+    }
+    .qr-section h3 {
+      font-size: 1rem;
+      color: #1976d2;
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+    .qr-section canvas {
+      border: 2px solid #1976d2;
+      border-radius: 8px;
+      margin-bottom: 4px;
+      background: #fff;
+    }
+    .emergency-section {
+      margin-top: 10px;
+      width: 100%;
+      background: #fffde7;
+      border-left: 4px solid #fbc02d;
+      border-radius: 6px;
+      padding: 8px 12px;
+      font-size: 0.98em;
+      color: #b26a00;
+    }
+    .update-section {
+      margin-top: 30px;
+      width: 370px;
+      max-width: 95vw;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(33,150,243,0.08);
+      padding: 18px 20px 12px 20px;
+      border: 1.5px solid #b3e5fc;
+    }
+    .update-section h3 {
+      color: #1976d2;
+      margin-bottom: 10px;
+      font-size: 1.08rem;
+      font-weight: 700;
+    }
+    .update-section label {
+      display: block;
+      margin-top: 10px;
+      margin-bottom: 3px;
+      color: #1976d2;
+      font-weight: 500;
+      font-size: 0.98em;
+    }
+    .update-section input[type="text"],
+    .update-section input[type="password"] {
+      width: 100%;
+      padding: 7px 10px;
+      border-radius: 6px;
+      border: 1px solid #b3e5fc;
+      margin-bottom: 8px;
+      font-size: 1em;
+      background: #f7fafc;
+    }
+    .update-section button {
+      background: linear-gradient(90deg, #009688 0%, #21a1f3 100%);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 18px;
+      font-size: 1em;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 8px;
+      width: 100%;
+    }
+    .update-section button:hover {
+      background: linear-gradient(90deg, #21a1f3 0%, #009688 100%);
+    }
+    @media (max-width: 500px) {
+      .medical-id-card, .update-section {
+        width: 98vw;
+        padding: 8vw 2vw;
+      }
+      .profile-info-table td:first-child {
+        width: 90px;
+      }
+    }
+  </style>
 </head>
 <body>
+   <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2 class="logo">MyHealth</h2>
+      <nav>
+        <ul>
+          <li><a href="patient_dashboard.html" class="active">Dashboard</a></li>
+          <li><a href="profile.html">Profile</a></li>
+          <li><a href="appoint_history.html">Appointment History</a></li>
+          <li><a href="medreport.html">Medical Reports</a></li>
+          <li><a href="prescription.html">Prescriptions</a></li>
+          <li><a href="billing.html">Billing</a></li>
+          <li><a href="notification.html">Notifications</a></li>
+          <li><a href="index.html" id="logoutBtn">Logout</a></li>        
+        </ul>
+      </nav>
+    </aside>
   <div class="profile-container">
-    <h1>Patient Profile</h1>
-
-    <div class="profile-card">
-      <img src="images/default-avatar.png" alt="Patient Avatar" class="avatar" />
-
+    <div class="medical-id-card">
+      <div class="medical-id-header">
+        <img src="images/logo.jpg" alt="Hospital Logo" class="medical-id-logo" />
+        <span class="medical-id-title">Amrita Medicity<br>Health ID Card</span>
+      </div>
+      <img src="images/avatar.jpg" alt="Patient Avatar" class="avatar" />
       <div class="profile-info">
         <h2>John Doe</h2>
-        <p><strong>Patient ID:</strong> P123456</p>
-        <p><strong>Email:</strong> john.doe@example.com</p>
-        <p><strong>Phone:</strong> +91 9876543210</p>
-        <p><strong>Address:</strong> 123 Main Street, Kochi, Kerala</p>
-        <p><strong>Blood Group:</strong> B+</p>
-        <p><strong>Date of Birth:</strong> 10 March 1985</p>
-        <p><strong>Gender:</strong> Male</p>
+        <table class="profile-info-table">
+          <tr>
+            <td>Patient ID:</td>
+            <td>P123456</td>
+          </tr>
+          <tr>
+            <td>DOB:</td>
+            <td>10 March 1985</td>
+          </tr>
+          <tr>
+            <td>Gender:</td>
+            <td>Male</td>
+          </tr>
+          <tr>
+            <td>Blood Group:</td>
+            <td>B+</td>
+          </tr>
+          <tr>
+            <td>Email:</td>
+            <td>john.doe@example.com</td>
+          </tr>
+          <tr>
+            <td>Phone:</td>
+            <td>+91 9876543210</td>
+          </tr>
+          <tr>
+            <td>Address:</td>
+            <td>123 Main Street, Kochi, Kerala</td>
+          </tr>
+        </table>
+      </div>
+      <div class="qr-section">
+        <h3>Health ID QR Code</h3>
+        <canvas id="qr-code"></canvas>
+        <div style="font-size:0.92em; color:#555;">Scan for patient info</div>
+      </div>
+      <div class="emergency-section">
+        <strong>Emergency Contact:</strong> +91 9988776655<br>
+        <strong>Allergies:</strong> None<br>
+        <strong>Medical Notes:</strong> N/A
+        <button class="print-btn" onclick="window.print()" style="margin-top:16px; width:100%; max-width:200px;">
+  Print Medical ID Card
+</button>
       </div>
     </div>
-
     <div class="update-section">
       <h3>Update Contact Details</h3>
       <form action="#" method="post">
@@ -42,5 +274,21 @@
       </form>
     </div>
   </div>
+  <script>
+    // Generate QR code with patient info (for demo, using Patient ID and name)
+    var qr = new QRious({
+      element: document.getElementById('qr-code'),
+      value: JSON.stringify({
+        id: 'P123456',
+        name: 'John Doe',
+        dob: '10 March 1985',
+        blood: 'B+'
+      }),
+      size: 120,
+      background: '#fff',
+      foreground: '#1976d2',
+      level: 'H'
+    });
+  </script>
 </body>
 </html>
